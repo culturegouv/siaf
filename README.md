@@ -2,7 +2,7 @@
 
 ## scripts
 
-Scripts de moissonnage permettant de récupérer les données depuis FranceArchives, de contourner les redirections techniques et de produire des fichiers directement exploitables.
+Scripts de moissonnage permettant de récupérer les données et d’exposer des fichiers directement exploitables.
 
 ## data
 
