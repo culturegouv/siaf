@@ -2,7 +2,7 @@
 
 ## scripts
 
-Scripts de moissonnage permettant de récupérer les données et d’exposer des fichiers directement exploitables.
+Scripts de moissonnage permettant de récupérer les données et d’exposer des fichiers directement exploitables, notamment pour data.gouv.fr.
 
 ## data
 
