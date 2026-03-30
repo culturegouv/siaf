@@ -2,7 +2,7 @@ name: Moisson SIAF Annuaire
 
 on:
   schedule:
-    - cron: '30 2 1 * *'
+    - cron: '30 2 * * *'
   workflow_dispatch:
 
 jobs:
