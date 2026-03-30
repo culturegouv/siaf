@@ -23,7 +23,6 @@ BASE_URL = "https://data-dump.francearchives.gouv.fr"
 
 DATASETS = {
     "circulaires": "https://data-dump.francearchives.gouv.fr/ape-ead-eac/editorial/circulaires.csv",
-    "annuaire": "https://data-dump.francearchives.gouv.fr/ape-ead-eac/editorial/annuaire.csv",
 }
 
 OUTPUT_DIR = Path("data")
