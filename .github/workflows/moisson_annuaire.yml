@@ -1,31 +1,33 @@
 name: Moisson SIAF Annuaire
-
 on:
   schedule:
     - cron: '30 2 * * *'
   workflow_dispatch:
-
+concurrency:
+  group: siaf-moisson-push
+  cancel-in-progress: false
 jobs:
   run-moisson:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
       - name: Run script
         run: python scripts/moissonsiaf_annuaire.py
-
       - name: Commit changes
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add data/moisson_annuaire.csv
-          git status
-          git commit -m "Mise à jour de l'annuaire SIAF" || echo "No changes"
-          git push
+          git commit -m "Mise à jour de l'annuaire SIAF" || { echo "Aucune modification"; exit 0; }
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin main && git push && exit 0
+            echo "Push rejeté, nouvelle tentative ($i)…"
+            sleep $((RANDOM % 5 + 1))
+          done
+          echo "Échec du push après plusieurs tentatives" >&2
+          exit 1
