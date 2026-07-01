@@ -1,0 +1,15 @@
+name: Test — lancer les deux moissons
+on:
+  workflow_dispatch:
+permissions:
+  actions: write
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher annuaire puis circulaires
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run moisson_annuaire.yml --repo ${{ github.repository }}
+          gh workflow run moisson_circulaires.yml --repo ${{ github.repository }}
